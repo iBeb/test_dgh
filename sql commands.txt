@@ -1,0 +1,56 @@
+http://sqlfiddle.com/#!5/2a3e4/8
+
+** SCHEMA **
+
+CREATE TABLE requests
+(
+  script_id int,
+  time_stamp timestamp,
+  requests int
+);
+
+CREATE TABLE scripts
+(
+  customer_id int,
+  script_id int,
+  version varchar (255),
+  event varchar (255)
+);
+
+INSERT INTO requests 
+(script_id,time_stamp,requests)
+VALUES 
+(32,"2015-05-01 10:00:00",154),
+(33,"2015-05-01 10:00:00",432),
+(32,"2015-05-01 10:00:05",243);
+
+INSERT INTO scripts
+(customer_id,script_id,version,event)
+VALUES 
+(104,32,1.7,"load"),
+(159,33,1.7,"unload"),
+(177,34,2.0,"unload"),
+(104,35,2.0,"unload"),
+(159,36,2.0,"load");
+****
+
+** TASKS **
+1. SELECT * FROM script WHERE event = "load";
+
+2. SELECT script.version, script.event, SUM(request.requests) FROM request, script 
+WHERE script.script_id = request.script_id AND DATE(request.time_stamp) = "2015-05-01"
+GROUP BY 1, 2;
+
+3. SELECT script.version, script.event, SUM(request.requests) FROM request, script 
+WHERE script.script_id = request.script_id AND script.customer_id = 104
+GROUP BY 1, 2;
+
+Question 1:
+Some scripts are missing because the query will return only scripts that appear in the table requests. Meaning that it will return only script ids that generated requests.
+
+Question 2:
+SELECT COUNT(a.script_id), event
+FROM scripts AS a 
+LEFT JOIN requests AS b ON a.script_id = b.script_id
+WHERE b.script_id IS NULL
+GROUP BY event;

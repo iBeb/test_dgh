@@ -1,0 +1,7 @@
+Explain how the view and the controller will react when:
+	the user sends a feedback using the first form,
+	the user saves the changes he made on the second form,
+	describe what could possibly not work as expected or fail,
+
+- The action is missing in both forms so there will be an error message when the submit button is clicked.
+In the case that there were no errors, once the form is submited, the controller will redirect the user to 'manage/user/', if there are no errors. 
