@@ -45,7 +45,7 @@ function filter(){
 }
 
 var list = filter();
-console.log(list);
+console.log("Task A.2 ", list);
 
 /**
 * Task A.Bonus
@@ -68,7 +68,7 @@ function filter_owner(owner_id){
 }
 
 var owner_atts = filter_owner(1);
-console.log(owner_atts);
+console.log("Task A.Bonus ", owner_atts);
 
 /**
 * Task A.Super Bonus
@@ -95,4 +95,4 @@ function filter_owners(owner_ids){
 
 var owner_ids = [4,5];
 var owners_atts = filter_owners(owner_ids);
-console.log(owners_atts);
+console.log("Task A.Super Bonus ", owners_atts);
