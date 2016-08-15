@@ -54,3 +54,4 @@ FROM scripts AS a
 LEFT JOIN requests AS b ON a.script_id = b.script_id
 WHERE b.script_id IS NULL
 GROUP BY event;
+
